@@ -1,0 +1,53 @@
+<?php
+    require_once "php/change-password.php";
+    $access = $_SESSION['email'];
+    if(!isset($access)){
+        header("Location: forgot-password.php");
+    }
+?>
+<?php  include_once "header2.php"; ?>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4 form">
+                <form action="new-password.php" method="POST" autocomplete="off">
+                    <h2 class="text-center">New Password</h2>
+                    <?php
+                        if(count($errors) > 0){
+                            ?>
+                            <div class="alert alert-danger text-center">
+                                <?php 
+                                    foreach($errors as $error){
+                                        echo $error;
+                                    }
+                                ?>
+                            </div>
+                            <?php
+                        }else{
+                            ?>
+                            <div class="alert alert-success text-center">
+                                <p>Create Your New Password</p>
+                            </div>
+                            <?php
+                        }
+                    ?>
+                    <div class="form-group field" id="pass">
+                        <input type="password" id="pwd" name="password" placeholder="Enter New Password" class="form-control" required>
+                        <i class="fas fa-eye" id="pwdEye"></i>
+                    </div>
+                    <div class="form-group field" id="pass">
+                        <input type="password" id="confirm" name="cpassword" placeholder="Confirm Your password" class="form-control" required>
+                        <i class="fas fa-eye" id="confirmEye"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Change Password" class="form-control button" name="change-password">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="javascript/pass-showHide.js"></script>
+</body>
+</html>
